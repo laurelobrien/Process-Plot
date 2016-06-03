@@ -60,6 +60,6 @@ The HPGL output that is automatically sent to your plotter looks like:
 SP2; LT4; PA170,602,; RR2149,4376;
 ```
 
-Because Process-Plot simply sends Strings of HPGL to your serial port, you can use plotter emulators like PlotterGeist or simply write the Strings to a text file.
+Because Process-Plot just sends Strings of HPGL to your serial port, you can use plotter emulators like PlotterGeist or simply write the Strings to a text file.
 
 *Full documentation forthcoming.*
