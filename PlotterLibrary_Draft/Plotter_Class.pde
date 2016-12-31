@@ -109,8 +109,8 @@ class Plotter {
   }
   
   
-  //draw a rectangle with fill: the default fill is solid ink, can be changed
-  //by the lineType() function executed before the drawRectFill() function
+  //draw a FILLED rectangle at x, y.
+  //fill pattern is determined by latest lineType() setting
   void drawRectFill(float _x, float _y, float _w, float _h) {
     //map pixel input to plotter units
     float x = map(_x, 0, width, xMin, xMax);
@@ -126,7 +126,7 @@ class Plotter {
   }
   
   
-  //draw a circle with provided diameter at x, y with input resolution
+  //draw a circle at x, y with input resolution
   void drawEllipse(float diam, float _x, float _y, float res) {
     float radius = map(diam/2, 0, width, xMin, xMax);
     float x = map(x1, 0, width, xMin, xMax);
@@ -134,6 +134,36 @@ class Plotter {
     
     //PAx,y; CIradius,res; //move to x, y and draw a circle 
     write("PA" + x + "," + y + ";" + "CI" + radius + "," + res + ";", 75);
+  }
+  
+  
+  //set the pattern used to draw lines and fill shapes.
+  //default is solid line/fill if lineType() is never called
+  void lineType(String pattern) {
+    int selection; //pattern number to be selected
+    
+    //initialize selection based on desired pattern
+    if (pattern.equals("single dot")) {
+      selection = 0;
+    } else if (pattern.equals("dotted")) {
+      selection = 1;
+    } else if (pattern.equals("short dash")) {
+      selection = 2;
+    } else if (pattern.equals("long dash")) {
+      selection = 3;
+    } else if (pattern.equals("dotted dash")) {
+      selection = 4;
+    } else if (pattern.equals("long dotted dash")) {
+      selection = 5;
+    } else if (pattern.equals("two point dash")) {
+      selection = 6;
+    } else {
+      //debugging output
+      println(pattern + " isn't a valid line type. Continuing plot with last selected line type.");
+    }
+    
+    //write hpgl to port
+    write("LT" + selection + ";");
   }
   
 }

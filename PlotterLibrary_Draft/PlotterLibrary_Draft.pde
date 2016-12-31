@@ -51,7 +51,7 @@ void setup() {
   
   /* Instantiate a Plotter object
   ---------------------------------------
-  Plotters need to be instantiated with a port to connect to and a paper size.
+  Plotters need to be instantiated with a port to connect to, and a paper size.
   "A" = letter size, "B" = tabloid size, "A4" = metric A4, "A3" = metric A3 */
   penPlotter = new Plotter(myPort, "A");
   
